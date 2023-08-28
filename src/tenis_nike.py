@@ -50,8 +50,14 @@ class TenisNike:
         }
 
         if self.haves_discount:
+            self.saving = f'R$ {float(self.price_without_discount.text.replace("R$ ", "").replace(",", ".")) - float(self.price_with_discount.text.replace("R$ ", "").replace(",", ".")):.2f}'.replace(
+                ".", ","
+            )
+
             result.update({"Preço sem desconto": self.price_without_discount.text})
             result.update({"Preço com desconto": self.price_with_discount.text})
+            result.update({"Economia": self.saving})
+            result.update({"Desconto": f"{self.discount.text}"})
         else:
             result.update({"Preço": self.price.text})
 
